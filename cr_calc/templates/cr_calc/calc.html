@@ -1,0 +1,33 @@
+{% extends 'cr_calc/base.html' %}
+
+{% block content %}
+<h1>{{title}}</h1>
+
+<form action="/calc/" method="post" novalidate>
+    <table>
+        {% for field in form.visible_fields %}
+        <tr>
+            <td> {{ field.label_tag }} </td>
+            <td>    {{ field }}  </td>
+            <td> {{ field.errors}} </td>
+        </tr>
+
+        {% endfor %}
+    <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit" name="id_submit_calc" value="Рассчитать"></td>
+    </tr>
+    </table>
+    {% csrf_token %}
+</form>
+
+
+{% endblock %}
+
+{% block result %}
+<h3 id="result">{{approve}}</h3>
+<span id="amount">{{amount}}</span> <br>
+<span id="rate">{{approve_rate}}</span> <br>
+<span id="annual_payment">{{annual_payment}}</span>
+
+{% endblock %}
